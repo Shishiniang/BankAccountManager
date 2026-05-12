@@ -1,67 +1,7 @@
-//Page 134, chapter 4.7
-//4_9.cpp
+//Page 177, chapter 5.7
+//5_11.cpp
+#include "account.h"
 #include <iostream>
-#include <cmath>
-
-class SavingsAccount{
-    private:
-        int id; //User ID
-        double balance; //User balance
-        double rate; //Year interest rate
-        int lastDate; //Last time balance changed date
-        double accumulation; //Sum of interest
-
-        void record(int date,double amount);
-        double accumulate(int date) const{
-            return accumulation+balance*(date-lastDate);
-        }
-
-    public:
-        SavingsAccount(int date,int id,double rate);
-        int getId(){return id;}
-        double getBalance(){return balance;}
-        double getRate(){return rate;}
-        void deposit(int date, double amount);
-        void withdraw(int date,double amount);
-        void settle(int date);
-        void show();
-};
-
-SavingsAccount::SavingsAccount(int date,int id,double rate):id(id),balance(0),rate(rate),lastDate(date),accumulation(0){
-    std::cout<<date<<"\t#"<<id<<" is created"<<std::endl;
-}
-
-void SavingsAccount::record(int date, double amount){
-    accumulation=accumulate(date);
-    lastDate=date;
-    amount=floor(amount*100+0.5)/100;
-    balance+=amount;
-    std::cout<<date<<"\t#"<<id<<"\t"<<amount<<"\t"<<balance<<std::endl;
-}
-
-void SavingsAccount::deposit(int date,double amount){
-    record(date,amount);
-}
-
-void SavingsAccount::withdraw(int date,double amount){
-    if(amount>getBalance()){
-        std::cout<<"Error: not enough money"<<std::endl;
-    }else{
-        record(date,-amount);
-    }
-}
-
-void SavingsAccount::settle(int date){
-    double interest=accumulate(date)*rate/365;
-    if(interest!=0){
-        record(date,interest);
-    }
-    accumulation=0;
-}
-
-void SavingsAccount::show(){
-    std::cout<<"#"<<id<<"\tBalance: "<<balance;
-}
 
 int main(){
     //create a few accounts
@@ -78,5 +18,7 @@ int main(){
     //print info of accounts
     sa0.show();std::cout<<std::endl;
     sa1.show();std::cout<<std::endl;
-}
+    std::cout<<"Total: "<<SavingsAccount::getTotal()<<std::endl;
 
+    return 0;
+}
