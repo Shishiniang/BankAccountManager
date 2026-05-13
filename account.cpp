@@ -1,4 +1,4 @@
-//Page 177, chapter 5.7
+//Page 234, chapter 6.7
 #include "account.h"
 #include <cmath>
 #include <iostream>

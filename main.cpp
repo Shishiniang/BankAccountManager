@@ -1,4 +1,4 @@
-//Page 177, chapter 5.7
+//Page 234, chapter 6.7
 //5_11.cpp
 #include "account.h"
 #include <iostream>

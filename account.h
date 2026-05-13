@@ -1,4 +1,4 @@
-//Page 177, chapter 5.7
+//Page 234, chapter 6.7
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 
