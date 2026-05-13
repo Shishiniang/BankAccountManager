@@ -4,20 +4,27 @@
 #include <iostream>
 
 int main(){
+    Date date(2008,11,1);//begin date
     //create a few accounts
-    SavingsAccount sa0(1,21325302,0.015);
-    SavingsAccount sa1(1,58320212,0.015);
-    //some transactions
-    sa0.deposit(5,5000);
-    sa1.deposit(25,10000);
-    sa0.deposit(45,5500);
-    sa1.withdraw(60,4000);
-    //after 90 days it's settle day, caculate year interest for all accounts
-    sa0.settle(90);
-    sa1.settle(90);
+    SavingsAccount accounts[]={
+        SavingsAccount(date,"03755217",0.015),
+        SavingsAccount(date,"02342342",0.015)
+    };
+    const int n=sizeof(accounts)/sizeof(SavingsAccount);
+
+    //some transactions in 11th month
+    accounts[0].deposit(Date(2008,11,5),5000,"salary");
+    accounts[1].deposit(Date(2008,11,25),10000,"sell stock 0323");
+    //some transactions in 12th month
+    accounts[0].deposit(Date(2008,12,5),5500,"salary");
+    accounts[1].withdraw(Date(2008,12,20),4000,"buy a laptop");
     //print info of accounts
-    sa0.show();std::cout<<std::endl;
-    sa1.show();std::cout<<std::endl;
+    std::cout<<std::endl;
+    for(int i=0;i<n;++i){
+        accounts[i].settle(Date(2009,1,1));
+        accounts[i].show();
+        std::cout<<std::endl;
+    }
     std::cout<<"Total: "<<SavingsAccount::getTotal()<<std::endl;
 
     return 0;

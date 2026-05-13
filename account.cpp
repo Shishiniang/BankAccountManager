@@ -4,38 +4,44 @@
 #include <iostream>
 
 double SavingsAccount::total=0;
-SavingsAccount::SavingsAccount(int date,int id,double rate):id(id),balance(0),rate(rate),lastDate(date),accumulation(0){
-    std::cout<<date<<"\t#"<<id<<" is created"<<std::endl;
+SavingsAccount::SavingsAccount(const Date &date,const std::string &id,double rate):id(id),balance(0),rate(rate),lastDate(date),accumulation(0){
+    date.show();
+    std::cout<<"\t#"<<id<<" is created"<<std::endl;
 }
 
-void SavingsAccount::record(int date, double amount){
+void SavingsAccount::record(const Date &date,double amount,const std::string &desc){
     accumulation=accumulate(date);
     lastDate=date;
     amount=floor(amount*100+0.5)/100;
     balance+=amount;
-    std::cout<<date<<"\t#"<<id<<"\t"<<amount<<"\t"<<balance<<std::endl;
+    date.show();
+    std::cout<<"\t#"<<id<<"\t"<<amount<<"\t"<<balance<<std::endl;
 }
 
-void SavingsAccount::deposit(int date,double amount){
-    record(date,amount);
+void SavingsAccount::error(const std::string &msg)const{
+    std::cout<<"Error(# "<<id<<"): "<<msg<<std::endl;
 }
 
-void SavingsAccount::withdraw(int date,double amount){
+void SavingsAccount::deposit(const Date &date,double amount,const std::string &desc){
+    record(date,amount,desc);
+}
+
+void SavingsAccount::withdraw(const Date &date,double amount,const std::string &desc){
     if(amount>getBalance()){
-        std::cout<<"Error: not enough money"<<std::endl;
+        error("not enough money.");
     }else{
-        record(date,-amount);
+        record(date,-amount,desc);
     }
 }
 
-void SavingsAccount::settle(int date){
-    double interest=accumulate(date)*rate/365;
+void SavingsAccount::settle(const Date &date){
+    double interest=accumulate(date)*rate/date.distance(Date(date.getYear()-1,1,1));
     if(interest!=0){
-        record(date,interest);
+        record(date,interest,"Interest");
     }
     accumulation=0;
 }
 
 void SavingsAccount::show() const {
-    std::cout<<"#"<<id<<"\tBalance: "<<balance;
+    std::cout<<id<<"\tBalance: "<<balance;
 }
