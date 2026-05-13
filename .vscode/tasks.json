@@ -8,9 +8,9 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
+				"${workspaceFolder}/*.cpp",     // 编译所有 .cpp 文件
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
+				"${workspaceFolder}/main"       // 输出可执行文件
 			],
 			"options": {
 				"cwd": "${fileDirname}"
