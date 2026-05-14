@@ -3,6 +3,7 @@
 #include <cmath>
 #include <iostream>
 
+double Account::total=0;
 Account::Account(const Date &date,const std::string &id):id(id),balance(0){
     date.show();
     std::cout<<"\t#"<<id<<" created"<<std::endl;
