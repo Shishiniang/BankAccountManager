@@ -2,6 +2,7 @@
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 #include "date.h"
+#include "accumulator.h"
 #include <string>
 class SavingsAccount{
     private:
