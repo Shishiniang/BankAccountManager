@@ -4,21 +4,20 @@
 #include "date.h"
 #include "accumulator.h"
 #include <string>
-class SavingsAccount{
+class Account{
     private:
-        std::string id; //User ID
-        double balance; //User balance
-        double rate; //Year interest rate
-        Date lastDate; //Last time balance changed date
-        double accumulation; //Sum of interest
+        std::string id;
+        double balance;
         static double total;
-
+    protected:
+        Account(const Date &date,const std::string &id);
         void record(const Date &date,double amount,const std::string &desc);
         void error(const std::string &msg) const;
-        double accumulate(const Date& date) const{
-            return accumulation+balance*(date.distance(lastDate));
-        }
-
+};
+class SavingsAccount : public Account{
+    private:
+        Accumulator acc;
+        double rate;
     public:
         SavingsAccount(const Date &date,const std::string &id,double rate);
         const std::string getId() const {return id;}
