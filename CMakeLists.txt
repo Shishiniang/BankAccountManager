@@ -6,6 +6,7 @@ add_executable(main
     src/main.cpp
     src/account.cpp
     src/date.cpp
+    src/Array.cpp
 )
 
 target_include_directories(main PRIVATE include)

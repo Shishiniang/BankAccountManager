@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+src/Array.o: src/Array.cpp.o
+.PHONY : src/Array.o
+
+# target to build an object file
+src/Array.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Array.cpp.o
+.PHONY : src/Array.cpp.o
+
+src/Array.i: src/Array.cpp.i
+.PHONY : src/Array.i
+
+# target to preprocess a source file
+src/Array.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Array.cpp.i
+.PHONY : src/Array.cpp.i
+
+src/Array.s: src/Array.cpp.s
+.PHONY : src/Array.s
+
+# target to generate assembly for a file
+src/Array.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Array.cpp.s
+.PHONY : src/Array.cpp.s
+
 src/account.o: src/account.cpp.o
 .PHONY : src/account.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... src/Array.o"
+	@echo "... src/Array.i"
+	@echo "... src/Array.s"
 	@echo "... src/account.o"
 	@echo "... src/account.i"
 	@echo "... src/account.s"

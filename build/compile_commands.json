@@ -16,5 +16,11 @@
   "command": "/usr/bin/c++  -I/home/ragnar/BankAccountManager/include -g -o CMakeFiles/main.dir/src/date.cpp.o -c /home/ragnar/BankAccountManager/src/date.cpp",
   "file": "/home/ragnar/BankAccountManager/src/date.cpp",
   "output": "CMakeFiles/main.dir/src/date.cpp.o"
+},
+{
+  "directory": "/home/ragnar/BankAccountManager/build",
+  "command": "/usr/bin/c++  -I/home/ragnar/BankAccountManager/include -g -o CMakeFiles/main.dir/src/Array.cpp.o -c /home/ragnar/BankAccountManager/src/Array.cpp",
+  "file": "/home/ragnar/BankAccountManager/src/Array.cpp",
+  "output": "CMakeFiles/main.dir/src/Array.cpp.o"
 }
 ]
