@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/account.cpp.o CMakeFiles/main.dir/src/date.cpp.o -o main 

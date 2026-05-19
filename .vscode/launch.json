@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CMake Debug", // 配置名称
+            "type": "cppdbg",
+            "request": "launch",
+            // 重点：这里不需要写死路径，使用CMake Tools提供的命令变量
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb", // 确保 gdb 路径正确
+            // 注意：这里不需要 preLaunchTask 了！
+        }
+    ]
+}

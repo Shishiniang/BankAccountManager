@@ -1,0 +1,3 @@
+/home/ragnar/BankAccountManager/build/CMakeFiles/main.dir
+/home/ragnar/BankAccountManager/build/CMakeFiles/edit_cache.dir
+/home/ragnar/BankAccountManager/build/CMakeFiles/rebuild_cache.dir

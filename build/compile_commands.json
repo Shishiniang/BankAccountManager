@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/ragnar/BankAccountManager/build",
+  "command": "/usr/bin/c++  -I/home/ragnar/BankAccountManager/include -g -o CMakeFiles/main.dir/src/main.cpp.o -c /home/ragnar/BankAccountManager/src/main.cpp",
+  "file": "/home/ragnar/BankAccountManager/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/ragnar/BankAccountManager/build",
+  "command": "/usr/bin/c++  -I/home/ragnar/BankAccountManager/include -g -o CMakeFiles/main.dir/src/account.cpp.o -c /home/ragnar/BankAccountManager/src/account.cpp",
+  "file": "/home/ragnar/BankAccountManager/src/account.cpp",
+  "output": "CMakeFiles/main.dir/src/account.cpp.o"
+},
+{
+  "directory": "/home/ragnar/BankAccountManager/build",
+  "command": "/usr/bin/c++  -I/home/ragnar/BankAccountManager/include -g -o CMakeFiles/main.dir/src/date.cpp.o -c /home/ragnar/BankAccountManager/src/date.cpp",
+  "file": "/home/ragnar/BankAccountManager/src/date.cpp",
+  "output": "CMakeFiles/main.dir/src/date.cpp.o"
+}
+]
