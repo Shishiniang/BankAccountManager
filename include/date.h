@@ -1,4 +1,4 @@
-//Page 234, chapter 6.7
+//Page 330, chapter 8.6
 //date.h
 #ifndef __DATE_H__
 #define __DATE_H__
@@ -19,7 +19,7 @@ class Date{
             return (year%4==0 && year%100!=0) || year%400==0;
         }
         void show()const;
-        int distance(const Date& date)const{
+        int operator-(const Date& date)const{
             return totalDays-date.totalDays;
         }
 };

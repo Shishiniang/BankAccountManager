@@ -1,4 +1,4 @@
-//Page 290, chapter 7.7
+//Page 330, chapter 8.6
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 #include "date.h"
@@ -17,7 +17,9 @@ class Account{
         const std::string &getId()const{return id;}
         double getBalance()const{return balance;}
         static double getTotal(){return total;}
-        void show()const;
+        virtual void deposit(const Date& date,double amount,const std::string& desc)=0;
+        virtual void withdraw(const Date& date,double amount,const std::string& desc)=0;
+        virtual void show()const;
 };
 class SavingsAccount : public Account{
     private:

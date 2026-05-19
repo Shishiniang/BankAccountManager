@@ -1,4 +1,4 @@
-//Page 290, chapter 7.7
+//Page 330, chapter 8.6
 #include "account.h"
 #include <cmath>
 #include <iostream>
@@ -41,7 +41,7 @@ void SavingsAccount::withdraw(const Date &date,double amount,const std::string &
 }
 
 void SavingsAccount::settle(const Date &date){
-    double interest=acc.getSum(date)*rate/date.distance(Date(date.getYear()-1,1,1));
+    double interest=acc.getSum(date)*rate/(date-Date(date.getYear()-1,1,1));
     if(interest!=0){
         record(date,interest,"Interest");
     }

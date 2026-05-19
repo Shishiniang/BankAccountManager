@@ -1,4 +1,4 @@
-//Chapter 7.7,page 290
+//Page 330, chapter 8.6
 //accumulator.h
 #ifndef __ACCUMULATOR_H__
 #define __ACCUMULATOR_H__
@@ -12,7 +12,7 @@ class Accumulator{
     public:
         Accumulator(const Date &date,double value):lastDate(date),value(value),sum(0){}
         double getSum(const Date &date)const{
-            return sum+value*date.distance(lastDate);
+            return sum+value*(date-lastDate);
         }
         void change(const Date &date,double value){
             sum=getSum(date);
