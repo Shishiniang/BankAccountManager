@@ -19,6 +19,7 @@ class Account{
         static double getTotal(){return total;}
         virtual void deposit(const Date& date,double amount,const std::string& desc)=0;
         virtual void withdraw(const Date& date,double amount,const std::string& desc)=0;
+        virtual void settle(const Date& date)=0;
         virtual void show()const;
 };
 class SavingsAccount : public Account{
