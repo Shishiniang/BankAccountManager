@@ -1,14 +1,31 @@
-//Page 330, chapter 8.6
+//Page 461, chapter 10.6
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 #include "date.h"
 #include "accumulator.h"
 #include <string>
+#include <map>
+class Account;//forward declaration
+class AccountRecord{
+    private:
+        Date date;
+        const Account* account;
+        double amount;
+        double balance;
+        std::string desc;
+    public:
+        AccountRecord(const Date& date,const Account* account,double amount,double balance,const std::string& desc);
+         void show()const;
+};
+
+typedef std::multimap<Date,AccountRecord>RecordMap;
+
 class Account{
     private:
         std::string id;
         double balance;
         static double total;
+        static RecordMap recordMap;
     protected:
         Account(const Date &date,const std::string &id);
         void record(const Date &date,double amount,const std::string &desc);
@@ -21,7 +38,9 @@ class Account{
         virtual void withdraw(const Date& date,double amount,const std::string& desc)=0;
         virtual void settle(const Date& date)=0;
         virtual void show()const;
+        static void query(const Date& begin,const Date& end);//query records between begin and end
 };
+
 class SavingsAccount : public Account{
     private:
         Accumulator acc;

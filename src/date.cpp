@@ -1,4 +1,4 @@
-//Page 234, chapter 6.7
+//Page 461, chapter 10.6
 #include "date.h"
 #include <iostream>
 #include <cstdlib>
@@ -19,6 +19,12 @@ Date::Date(int year,int month,int day):year(year),month(month),day(day){
     if(isLeapYear() && month>2) {
         ++totalDays;
     }
+}
+Date Date::read(){
+    int year,month,day;
+    char c1,c2;
+    std::cin>>year>>c1>>month>>c2>>day;
+    return Date(year,month,day);
 }
 int Date::getMaxDay()const{
     if(isLeapYear() && month==2){

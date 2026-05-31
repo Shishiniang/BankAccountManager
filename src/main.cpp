@@ -1,18 +1,27 @@
-//Page 290, chapter 7.7
-//7_10.cpp
+//Page 461, chapter 10.6
+//10_24.cpp
 #include "account.h"
 #include "Array.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
+struct deleter{
+    template<class T>
+    void operator()(T* p)const{
+        delete p;
+    }
+};
 
 int main(){
     Date date(2008,11,1);//begin date
 
     //create some saving accounts
-    Array<Account*>accounts(0);//an array of pointers that point to AbstractBaseClass that have 2 derived class
+    //Array<Account*>accounts(0);//an array of pointers that point to AbstractBaseClass that have 2 derived class
+    std::vector<Account*>accounts;
     std::cout<<"(a)add account (d)deposit (w)withdraw (s)show (c)change day (n)next month (e)exit"<<std::endl;
 
-    //command processor
+    //command processing loop
     char cmd;
     do{
         //show date and total
@@ -23,6 +32,7 @@ int main(){
         double amount,credit,rate,fee;
         std::string id,desc;
         Account* account;
+        //Date date1,date2; on book but not used, dkw
         std::cin>>cmd;
         switch(cmd){
             case 'a'://add account
@@ -34,8 +44,7 @@ int main(){
                     std::cin>>credit>>rate>>fee;
                     account=new CreditAccount(date,id,credit,rate,fee);
                 }
-                accounts.resize(accounts.getSize()+1);//we dont have pushback or append method so...
-                accounts[accounts.getSize()-1]=account;
+                accounts.push_back(account);
                 break;
             case 'd'://deposit
                 std::cin>>index>>amount;
@@ -48,7 +57,7 @@ int main(){
                 accounts[index]->withdraw(date,amount,desc);
                 break;
             case 's'://show
-                for(int i=0;i<accounts.getSize();++i){
+                for(int i=0;i<accounts.size();++i){
                     std::cout<<"["<<i<<"] ";
                     accounts[i]->show();
                     std::cout<<std::endl;
@@ -61,7 +70,7 @@ int main(){
                 }else{
                     date=Date(date.getYear(),date.getMonth()+1,1);
                 }
-                for(int i=0;i<accounts.getSize();++i){
+                for(int i=0;i<accounts.size();++i){
                     accounts[i]->settle(date);
                 }
                 break;
@@ -71,15 +80,19 @@ int main(){
                 }else{
                     date=Date(date.getYear(),date.getMonth()+1,1);
                 }
-                for(int i=0;i<accounts.getSize();++i){
-                    accounts[i]->settle(date);
+                // for(int i=0;i<accounts.size();++i){
+                //     accounts[i]->settle(date);
+                // }
+                for(std::vector<Account*>::iterator iter=accounts.begin();iter!=accounts.end();++iter){
+                    (*iter)->settle(date);
                 }
                 break;
         }
     }while(cmd!='e');
-    for(int i=0;i<accounts.getSize();++i){
-        delete accounts[i];
-    }
+    // for(int i=0;i<accounts.getSize();++i){
+    //     delete accounts[i];
+    // }
+    for_each(accounts.begin(),accounts.end(),deleter());
 
     return 0;
 }
