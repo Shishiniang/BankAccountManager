@@ -1,4 +1,4 @@
-//Page 461, chapter 10.6
+//Page 499, chapter 11.13
 #include "date.h"
 #include <iostream>
 #include <cstdlib>
@@ -20,12 +20,12 @@ Date::Date(int year,int month,int day):year(year),month(month),day(day){
         ++totalDays;
     }
 }
-Date Date::read(){
-    int year,month,day;
-    char c1,c2;
-    std::cin>>year>>c1>>month>>c2>>day;
-    return Date(year,month,day);
-}
+// Date Date::read(){//removed
+//     int year,month,day;
+//     char c1,c2;
+//     std::cin>>year>>c1>>month>>c2>>day;
+//     return Date(year,month,day);
+// }
 int Date::getMaxDay()const{
     if(isLeapYear() && month==2){
         return 29;
@@ -36,3 +36,15 @@ int Date::getMaxDay()const{
 void Date::show()const{
     std::cout<<getYear()<<"-"<<getMonth()<<"-"<<getDay();
 }
+std::istream& operator>>(std::istream& in,Date& date){
+    int year,month,day;
+    char c1,c2;
+    in>>year>>c1>>month>>c2>>day;
+    date=Date(year,month,day);
+    return in;
+}
+std::ostream& operator<<(std::ostream& out,const Date& date){
+    out<<date.getYear()<<"-"<<date.getMonth()<<"-"<<date.getDay();
+    return out;
+}
+

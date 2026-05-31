@@ -1,7 +1,9 @@
-//Page 461, chapter 10.6
+//Page 499, chapter 11.13
 //date.h
 #ifndef __DATE_H__
 #define __DATE_H__
+
+#include <iostream>
 
 class Date{
     private:
@@ -10,9 +12,9 @@ class Date{
         int day;
         int totalDays;
     public:
-        Date():year(1970),month(1),day(1),totalDays(0){}
+        Date():year(1970),month(1),day(1),totalDays(0){}//not used
         Date(int year,int month,int day);
-        static Date read();
+        //static Date read(); 
         int getYear()const{return year;}
         int getMonth()const{return month;}
         int getDay()const{return day;}
@@ -31,5 +33,7 @@ class Date{
             return totalDays<=date.totalDays;
         }
 };
+std::istream& operator>>(std::istream& in,Date& date);//these must be placed outside the class definition,otherwise it will cause compile error
+std::ostream& operator<<(std::ostream& out,const Date& date);//or use friend declaration in class Date,which is not recommended because it will break encapsulation
 
-#endif
+#endif //__DATE_H__
