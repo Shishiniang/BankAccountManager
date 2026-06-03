@@ -1,10 +1,11 @@
-//Page 461, chapter 10.6
+//Page 498, chapter 11.5
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 #include "date.h"
 #include "accumulator.h"
 #include <string>
 #include <map>
+#include<istream>//but all code uses ostream, dkw.And the reason it report no error was <iostream> has already included in date.h
 class Account;//forward declaration
 class AccountRecord{
     private:
@@ -37,9 +38,14 @@ class Account{
         virtual void deposit(const Date& date,double amount,const std::string& desc)=0;
         virtual void withdraw(const Date& date,double amount,const std::string& desc)=0;
         virtual void settle(const Date& date)=0;
-        virtual void show()const;
+        //virtual void show()const;
         static void query(const Date& begin,const Date& end);//query records between begin and end
+        virtual void show(std::ostream& out)const;
 };
+inline std::ostream& operator<<(std::ostream& out,const Account& account){
+    account.show(out);
+    return out; 
+}
 
 class SavingsAccount : public Account{
     private:
@@ -77,7 +83,7 @@ class CreditAccount:public Account{
         void deposit(const Date &date,double amount,const std::string &desc);
         void withdraw(const Date &date,double amount,const std::string &desc);
         void settle(const Date &date);
-        void show()const;
+        void show(std::ostream& out)const;
 };
 
 #endif //__ACCOUNT_H__

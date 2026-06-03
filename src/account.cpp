@@ -1,4 +1,4 @@
-//Page 330, chapter 8.6
+//Page 498, chapter 11.5
 #include "account.h"
 #include <cmath>
 #include <iostream>
@@ -8,7 +8,7 @@ AccountRecord::AccountRecord(const Date& date,const Account* account,double amou
     :date(date),account(account),amount(amount),balance(balance),desc(desc){}
 void AccountRecord::show()const{
     date.show();
-    std::cout<<"\t#"<<account->getId()<<"\t"<<amount<<"\t"<<balance<<"\t"<<desc<<std::endl;
+    std::cout<<date<<"\t#"<<account->getId()<<"\t"<<amount<<"\t"<<balance<<"\t"<<desc<<std::endl;
 }
 
 double Account::total=0;
@@ -24,7 +24,7 @@ void Account::query(const Date& begin,const Date& end){
 }
 Account::Account(const Date &date,const std::string &id):id(id),balance(0){
     date.show();
-    std::cout<<"\t#"<<id<<" created"<<std::endl;
+    std::cout<<date<<"\t#"<<id<<" created"<<std::endl;
 }
 void Account::record(const Date &date,double amount,const std::string &desc){
     amount=floor(amount*100+0.5)/100;
@@ -33,8 +33,8 @@ void Account::record(const Date &date,double amount,const std::string &desc){
     date.show();
     std::cout<<"\t#"<<id<<"\t"<<amount<<"\t"<<balance<<"\t"<<desc<<std::endl;
 }
-void Account::show()const{
-    std::cout<<id<<"\tBalance: "<<balance;
+void Account::show(std::ostream& out)const{
+    out<<id<<"\tBalance: "<<balance;
 }
 void Account::error(const std::string &msg)const{
     std::cout<<"Error(#"<<id<<"): "<<msg<<std::endl;
@@ -94,7 +94,7 @@ void CreditAccount::settle(const Date &date){
     acc.reset(date,getDebt());
 }
 
-void CreditAccount::show()const{
-    Account::show();
+void CreditAccount::show(std::ostream& out)const{
+    Account::show(out);
     std::cout<<"\tAvailable credit:"<<getAvailableCredit();
 }
