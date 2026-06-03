@@ -37,7 +37,8 @@ void Account::show(std::ostream& out)const{
     out<<id<<"\tBalance: "<<balance;
 }
 void Account::error(const std::string &msg)const{
-    std::cout<<"Error(#"<<id<<"): "<<msg<<std::endl;
+    //std::cout<<"Error(#"<<id<<"): "<<msg<<std::endl;
+    throw AccountException(this, msg);
 }
 
 

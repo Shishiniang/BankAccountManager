@@ -5,7 +5,10 @@
 #include "accumulator.h"
 #include <string>
 #include <map>
-#include<istream>//but all code uses ostream, dkw.And the reason it report no error was <iostream> has already included in date.h
+//#include<istream>//but all code uses ostream, dkw.And the reason it report no error was <iostream> has already included in date.h
+#include <ostream>
+#include <stdexcept>
+
 class Account;//forward declaration
 class AccountRecord{
     private:
@@ -84,6 +87,14 @@ class CreditAccount:public Account{
         void withdraw(const Date &date,double amount,const std::string &desc);
         void settle(const Date &date);
         void show(std::ostream& out)const;
+};
+
+class AccountException:public std::runtime_error{
+private:
+    const Account* account;//the account that cause the exception
+public:
+    AccountException(const Account* account,const std::string& msg):std::runtime_error(msg),account(account){}
+    const Account* getAccount()const{return account;}
 };
 
 #endif //__ACCOUNT_H__

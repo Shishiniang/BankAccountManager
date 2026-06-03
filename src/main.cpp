@@ -2,6 +2,7 @@
 //10_24.cpp
 #include "account.h"
 //#include "Array.h"//replaced by STL vector
+#include <exception>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -115,9 +116,15 @@ int main(){
     std::ifstream fileIn(FILE_NAME);
     if(fileIn){
         while(std::getline(fileIn,cmdLine)){
-            controller.runCommand(cmdLine);
-            fileIn.close();
+            try{
+                controller.runCommand(cmdLine);
+            }catch(std::exception& e){
+                std::cout<<"Bad line in "<<FILE_NAME<<": "<<cmdLine<<std::endl;
+                std::cout<<"Error: "<<e.what()<<std::endl;
+                return 1;
+            }
         }
+        fileIn.close();
     }
 
     std::ofstream fileOut(FILE_NAME,std::ios_base::app);
@@ -128,8 +135,14 @@ int main(){
         std::cout<<controller.getDate()<<"\tTotal: "<<Account::getTotal()<<"\tCommand: ";
         std::string cmdLine;
         getline(std::cin,cmdLine);
-        if(controller.runCommand(cmdLine)){
-            fileOut<<cmdLine<<std::endl;
+        try{
+            if(controller.runCommand(cmdLine)){
+                fileOut<<cmdLine<<std::endl;
+            }
+        }catch(AccountException& e){
+            std::cout<<"Error(#"<<e.getAccount()->getId()<<"): "<<e.what()<<std::endl;
+        }catch(std::exception& e){
+            std::cout<<"Error: "<<e.what()<<std::endl;
         }
     }
     return 0;
